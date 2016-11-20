@@ -1,3 +1,7 @@
+[![GitHub stars](https://img.shields.io/github/stars/badges/shields.svg?style=social&label=Star)](https://github.com/WyseNynja/media-suite)
+[![Docker Pulls](https://img.shields.io/docker/pulls/bwstitt/media-suite.svg)](https://hub.docker.com/r/bwstitt/media-suite/)
+[![License](http://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 # Media Suite
 
 **UNDER CONSTRUCTION**
