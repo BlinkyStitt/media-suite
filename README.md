@@ -63,3 +63,7 @@ docker pull bwstitt/library-composable:latest \
     bwstitt/media-suite:latest \
 && $MEDIA_SUITE_HOME/bin/run
 ```
+
+# TODO
+
+* [ ] Inject `<base href="/base_url">` with nginx?

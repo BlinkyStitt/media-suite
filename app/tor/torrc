@@ -9,3 +9,5 @@ SocksPort 0.0.0.0:9050
 ControlPort 9051
 CookieAuthentication 1
 DisableDebuggerAttachment 0
+
+# TODO: hidden service?
