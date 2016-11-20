@@ -12,10 +12,10 @@ services:
     ports:
      - "8337:8337/tcp"
     volumes:
-      - ./data/beets:/config
       # headphones is setup to put music into the beets dir
-      - ./downloads/beets:/downloads
-      - ./media/music:/music
+      - ./data/downloads/beets:/downloads
+      - ./data/media/music:/music
+      - ./data/var/beets:/config
 
   # audiobook player
   # TODO: I might just use Plex for this
@@ -24,9 +24,9 @@ services:
     ports:
       - "8081:8080/tcp"
     volumes:
-      - ./data/booksonic:/var/booksonic
-      - ./media/audiobook:/var/audiobooks
-      - ./media/podcasts:/var/Podcasts
+      - ./data/media/audiobook:/var/audiobooks
+      - ./data/media/podcasts:/var/Podcasts
+      - ./data/var/booksonic:/var/booksonic
 
   # torrent downloader
   # default user/password of admin/deluge at http://localhost:8112/
@@ -40,10 +40,10 @@ services:
       - "58946:58946/tcp"
       - "58946:58946/udp"
     volumes:
-      - ./data/deluge:/config
-      - ./downloads/deluge:/downloads
-      # TODO: make use of this
-      - ./downloading/deluge:/incoming
+      - ./data/downloads/deluge:/downloads
+      # TODO: make use of the downloading dir
+      - ./data/downloading/deluge:/incoming
+      - ./data/var/deluge:/config
 
   # automated music search
   headphones:
@@ -53,10 +53,10 @@ services:
     ports:
       - "8181:8181/tcp"
     volumes:
-      - "./data/headphones:/config"
-      # beets will move the music into ./media/music
-      - "./downloads/beets:/music"
-      - "./downloads/music:/downloads"
+      # beets will move the music into ./data/media/music
+      - "./data/downloads/beets:/music"
+      - "./data/downloads/music:/downloads"
+      - "./data/var/headphones:/config"
 
   # usenet search
   hydra:
@@ -66,8 +66,8 @@ services:
     ports:
       - "5075:5075/tcp"
     volumes:
-      - ./data/hydra:/config
-      - ./downloads/hydra:/downloads
+      - ./data/downloads/hydra:/downloads
+      - ./data/var/hydra:/config
 
   # torrent search proxy
   jackett:
@@ -78,7 +78,7 @@ services:
       - "9117:9177/tcp"
     volumes:
       - ./data/blackhole:/downloads
-      - ./data/jackett:/config
+      - ./data/var/jackett:/config
 
   # automated book search
   lazylibrarian:
@@ -86,9 +86,9 @@ services:
     ports:
       - "5299:5299/tcp"
     volumes:
-      - ./data/lazylibrarian:/config
-      - ./downloads/books:/downloads
-      - ./media/books:/books
+      - ./data/downloads/books:/downloads
+      - ./data/media/books:/books
+      - ./data/var/lazylibrarian:/config
 
   # automated comic book search
   mylar:
@@ -98,9 +98,9 @@ services:
     ports:
       - "8090:8090/tcp"
     volumes:
-      - ./data/mylar:/config
-      - ./downloads/mylar:/downloads
-      - ./media/comics:/comics
+      - ./data/downloads/mylar:/downloads
+      - ./data/media/comics:/comics
+      - ./data/var/mylar:/config
 
   # media player
   # Webui can be found at http://localhost:32400/web
@@ -117,12 +117,12 @@ services:
       - "32469:32469/tcp"
       - "32469:32469/udp"
     volumes:
-      - ./data/plex:/config
-      - ./data/plex_transcode:/transcode
-      - ./media/audiobook:/data/audiobook
-      - ./media/movies:/data/movies
-      - ./media/music:/data/music
-      - ./media/tv:/data/tv
+      - ./data/media/audiobook:/data/audiobook
+      - ./data/media/movies:/data/movies
+      - ./data/media/music:/data/music
+      - ./data/media/tv:/data/tv
+      - ./data/var/plex:/config
+      - ./data/var/plex_transcode:/transcode
 
   plexpy:
     image: linuxserver/plexpy
@@ -133,8 +133,8 @@ services:
     ports:
       - "8182:8181/tcp"
     volumes:
-      - ./data/plex/Library/Application Support/Plex Media Server/Logs:/logs:ro
-      - ./data/plexpy:/config
+      - ./data/var/plex/Library/Application Support/Plex Media Server/Logs:/logs:ro
+      - ./data/var/plexpy:/config
 
   # newsgroup downloader
   # TODO: automate setup of categories
@@ -146,9 +146,9 @@ services:
       - "8082:8080/tcp"
       - "9090:9090/tcp"
     volumes:
-      - ./data/sabnzbd:/config
-      - ./downloading/sabnzbd:/incomplete-downloads
-      - ./downloads:/downloads
+      - ./data/downloading/sabnzbd:/incomplete-downloads
+      - ./data/downloads:/downloads
+      - ./data/var/sabnzbd:/config
 
   # automated tv search
   sonarr:
@@ -160,9 +160,9 @@ services:
     ports:
       - "8989:8989/tcp"
     volumes:
-      - ./data/sonarr:/config
-      - ./downloads/tv:/downloads
-      - ./media/tv:/tv
+      - ./data/downloads/tv:/downloads
+      - ./data/media/tv:/tv
+      - ./data/var/sonarr:/config
       # - /dev/rtc:/dev/rtc:ro
 
   tor:
@@ -171,5 +171,13 @@ services:
       - "9050"
     volumes:
       - ./config/torrc:/etc/tor/torrc:ro
-      - ./data/tor:/var/lib/tor
+      # TODO: does this cover up the /var/lib/tor/.arm/armrc that comes with the container?
+      - ./data/var/tor:/var/lib/tor
       # - /dev/rtc:/dev/rtc:ro
+
+  web:
+    image: bwstitt/media-suite-web
+    ports:
+      - "8888:80"
+    volumes:
+      - ./web:/usr/share/nginx/html:ro
