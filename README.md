@@ -66,4 +66,4 @@ docker pull bwstitt/library-composable:latest \
 
 # TODO
 
-* [ ] Inject `<base href="/base_url">` with nginx?
+* [ ] Inject `<base href="/base_url">` with nginx? http://stackoverflow.com/questions/19700871/how-to-inject-custom-content-via-nginx should mean less messing with configs
