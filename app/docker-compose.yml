@@ -175,9 +175,18 @@ services:
       - ./data/var/tor:/var/lib/tor
       # - /dev/rtc:/dev/rtc:ro
 
-  web:
-    image: bwstitt/media-suite-web
+  web_dashboard:
+    image: bwstitt/media-suite-web:latest
+    ports:
+      - "3001:3001/tcp"
+      - "4000:4000/tcp"
+    volumes:
+      - ./web:/usr/share/nginx/html:ro
+
+  web_proxy:
+    image: nginx:stable-alpine
     ports:
       - "8888:80"
     volumes:
-      - ./web:/usr/share/nginx/html:ro
+      - ./web_simple:/usr/share/nginx/html:ro
+      # TODO: nginx config with lots of proxy_pass

@@ -49,3 +49,17 @@ mediasuite_tor_1             /usr/bin/tor -f              Up                    
 ```
 
 Going to each port individually works for now, but I plan to put them all behind nginx.
+
+
+# Developing
+
+```bash
+docker pull bwstitt/library-composable:latest \
+&& docker build . -t bwstitt/media-suite \
+&& docker run \
+    --rm -it \
+    -e "TARGET=$MEDIA_SUITE_HOME" \
+    -v "$MEDIA_SUITE_HOME:$MEDIA_SUITE_HOME" \
+    bwstitt/media-suite:latest \
+&& $MEDIA_SUITE_HOME/bin/run
+```
