@@ -1,54 +1,40 @@
-![Clarity](logo.png)
+# Media Suite - Web
 
-Clarity Seed
-============
-This is a seed project for Angular 2 applications using [Clarity](https://github.com/vmware/clarity). For more information on the Clarity Design System, visit the [Clarity website](https://vmware.github.io/clarity/).
+A simple web entrypoint for Media Suite apps.
 
-This seed's build system is written with gulp and provides the following out of the box:
+Built using [Clarity Seed](https://github.com/vmware/clarity-seed).
 
-- Angular 2 application with [clarity-icons](https://www.npmjs.com/package/clarity-icons), [clarity-ui](https://www.npmjs.com/package/clarity-ui) and [clarity-angular](https://www.npmjs.com/package/clarity-angular) included
-- Development and production builds
-- Unit test setup with [Jasmine](https://jasmine.github.io/) and [Karma](https://karma-runner.github.io/)
-- Code coverage on unit tests with [Istanbul](http://gotwarlost.github.io/istanbul/)
-- End-to-end test setup with [Protractor](http://www.protractortest.org/)
-- Development server with browsersync
-- SASS processor
-- TSLint
 
-Getting started
----------------
-#### Installation
+## Developing
+
+
+```bash
+# develop
+docker run \
+    --rm -it \
+    -p 3001:3001 \
+    -p 4000:4000 \
+    -v "$(pwd):/usr/src/app" \
+    node \
+    sh -c "npm install && npm start"
+
+# run unit tests
+docker run --rm -it bwstitt/media-suite-web:latest npm test
+
+# run e2e tests
+docker run --rm -it bwstitt/media-suite-web:latest npm run test.e2e
+
+# build and copy prod files
+./build.sh
 ```
-git clone https://github.com/vmware/clarity-seed.git
-cd clarity-seed
 
-# install the project's dependencies
-npm install
-
-# starts the application in dev mode and watches your files for livereload
-npm start
-```
-
-#### Test and build scripts
-```
-# running unit tests
-npm test
-
-# running e2e tests
-npm run test.e2e
-
-# dev build
-npm run build.dev
-
-# prod build
-npm run build.prod
-```
 
 ## Documentation
 
-For documentation on the Clarity Design System, including a list of components and example usage, see [our website](https://vmware.github.io/clarity).
+For documentation on the Clarity Design System, including a list of components and example usage, see [the clarity website](https://vmware.github.io/clarity).
 
-#### Directory structure
+
+### Directory structure
 ```
 .
 ├── README.md
@@ -78,14 +64,6 @@ For documentation on the Clarity Design System, including a list of components a
 ```
 
 
-## Contributing
-
-The Clarity project team welcomes contributions from the community. For more detailed information, see [CONTRIBUTING.md](CONTRIBUTING.md).
-
 ## License
 
-The clarity-seed project is licensed under the MIT license.
-
-## Feedback
-
-If you find a bug or want to request a new feature, please open a [GitHub issue](https://github.com/vmware/clarity-seed/issues).
+VMware licensed the clarity-seed project under the MIT license.
