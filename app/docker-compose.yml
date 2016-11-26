@@ -106,9 +106,9 @@ services:
     environment:
       - TZ=US/Eastern
     expose:
-      - "9177/tcp"
+      - "9117/tcp"
     ports:
-      - "9177:9177/tcp"
+      - "9117:9117/tcp"
     restart: always
     volumes:
       - ./data/blackhole:/downloads
