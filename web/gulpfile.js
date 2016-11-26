@@ -193,7 +193,8 @@ gulp.task('serve', ['build'], function() {
         historyApiFallback({index: './index.html'})
       ]
     },
-    files: [ baseRoot + '/**/*']
+    files: [ baseRoot + '/**/*'],
+    open: false
   });
 });
 

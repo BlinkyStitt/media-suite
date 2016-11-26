@@ -12,6 +12,7 @@ import { ROUTING } from "./app.routing";
 import { AppComponent } from './app.component';
 import { AboutComponent } from './components/about/about.component';
 import { HomeComponent } from './components/home/home.component';
+import { SetupComponent } from './components/setup/setup.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { HomeComponent } from './components/home/home.component';
   declarations: [
     AppComponent,
     AboutComponent,
-    HomeComponent
+    HomeComponent,
+    SetupComponent
   ],
   bootstrap: [ AppComponent ]
 })

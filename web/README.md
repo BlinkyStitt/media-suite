@@ -5,7 +5,7 @@ A simple web entrypoint for Media Suite apps.
 Built using [Clarity Seed](https://github.com/vmware/clarity-seed).
 
 
-## Developing
+# Developing
 
 
 ```bash
@@ -29,12 +29,12 @@ docker run --rm -it bwstitt/media-suite-web:latest npm run test.e2e
 ```
 
 
-## Documentation
+# Documentation
 
 For documentation on the Clarity Design System, including a list of components and example usage, see [the clarity website](https://vmware.github.io/clarity).
 
 
-### Directory structure
+## Directory structure
 ```
 .
 ├── README.md
@@ -64,6 +64,12 @@ For documentation on the Clarity Design System, including a list of components a
 ```
 
 
-## License
+# TODO
+
+* logo
+* helpful text at /setup
+
+
+# License
 
 VMware licensed the clarity-seed project under the MIT license.
